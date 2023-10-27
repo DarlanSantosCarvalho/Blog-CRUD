@@ -17,10 +17,15 @@ export default function usersPage() {
       <NavBar />
       <main className="flex text-center justify-around gap-10 my-20 items-center flex-col">
         {apiData.map((users: any) => (
-          <div key={users.idUsuario} className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-200 text-black md:h-72">
-            <h2 className="font-bold">{users.nome}</h2>
-            <p>{users.email}</p>
-            <p>{users.nomeUsuario}</p>
+          <div
+            key={users.idUsuario}
+            className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-500 text-black md:h-72"
+          >
+            <h2 className="font-bold text-md p-5 md:text-xl">{users.nome}</h2>
+            <p className="font-bold text-md p-5 md:text-xl">{users.email}</p>
+            <p className="font-bold text-md p-5 md:text-xl">
+              {users.nomeUsuario}
+            </p>
           </div>
         ))}
       </main>

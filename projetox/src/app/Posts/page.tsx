@@ -17,9 +17,16 @@ export default function PostsPage() {
       <NavBar />
       <main className="flex text-center justify-around gap-10 my-20 items-center flex-col">
         {apiData.map((itemsPost: any) => (
-          <div key={itemsPost.idPost} className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-200 text-black md:h-72">
-            <h2 className="font-bold">{itemsPost.tituloPost}</h2>
-            <p>{itemsPost.textoPost}</p>
+          <div
+            key={itemsPost.idPost}
+            className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-500 text-black rounded-md md:h-72"
+          >
+            <h2 className="font-bold text-md p-5 md:text-xl">
+              {itemsPost.tituloPost}
+            </h2>
+            <p className="font-bold text-md p-5 md:text-xl">
+              {itemsPost.textoPost}
+            </p>
           </div>
         ))}
       </main>
