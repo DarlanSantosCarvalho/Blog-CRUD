@@ -1,4 +1,3 @@
-import { text } from "stream/consumers";
 import { database } from "../db.js";
 
 export const getPosts = (req, res) => {
@@ -20,25 +19,28 @@ export const postPosts = (req, res) => {
   try {
     // Verifique se o usuário já existe
     database.query(
-      "SELECT idUsuario FROM usuarios WHERE nomeUsuario = ?",
-      [nomeUsuario],
+      "SELECT idUsuario FROM usuarios WHERE email = ? AND nomeUsuario = ?",
+      [email, nomeUsuario],
       (error, results) => {
         if (error) {
           console.log(error);
           res.status(500).json({ error: "Erro ao verificar o usuário" });
         } else {
           if (results.length > 0) {
-            // O usuário já existe, use o ID do usuário existente para inserir o post
-            const idUsuario = results[0].idUsuario;
             database.query(
-              "INSERT INTO posts (idUsuario, tituloPost, textoPost) VALUES (?, ?, ?)",
-              [idUsuario, tituloPost, textoPost]
+              "SELECT * FROM posts WHERE textoPost = ?",
+              [textoPost],
+              (error, results) => {
+                if (results.length > 0) {
+                  console.log("O texto já foi enviado");
+                }
+              }
             );
           } else {
             // O usuário não existe, insira o usuário primeiro
             database.query(
               "INSERT INTO usuarios (nome, email, nomeUsuario) VALUES (?,?,?)",
-              [nome, nomeUsuario, email],
+              [nome, email, nomeUsuario],
               (userInsertError, userInsertResults) => {
                 if (userInsertError) {
                   console.log(userInsertError);

@@ -14,8 +14,8 @@ type FormValues = {
 
 const resolver: Resolver<FormValues> = async (values) => {
   return {
-    values: values.nomeUsuario ? values : {},
-    errors: !values.nomeUsuario
+    values: values.nome ? values : {},
+    errors: !values.nome
       ? {
           nome: {
             type: "required",
