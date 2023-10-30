@@ -1,15 +1,15 @@
 "use client";
-import axios from "axios";
-import { useRef } from "react";
+import Axios from "axios";
+import { useRef, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
+import { AiFillEye } from "react-icons/ai";
 import NavBar from "../NavBar/page";
 
 type FormValues = {
   nome: string;
   nomeUsuario: string;
   email: string;
-  tituloPost: string;
-  textoPost: string;
+  senha: string;
 };
 
 const resolver: Resolver<FormValues> = async (values) => {
@@ -21,19 +21,15 @@ const resolver: Resolver<FormValues> = async (values) => {
             type: "required",
             message: "Preencha para enviar!",
           },
-          tituloPost: {
-            type: "required",
-            message: "Preencha para enviar!",
-          },
-          textoPost: {
-            type: "required",
-            message: "Preencha para enviar!",
-          },
           email: {
             type: "required",
             message: "Preencha para enviar!",
           },
           nomeUsuario: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          senha: {
             type: "required",
             message: "Preencha para enviar!",
           },
@@ -43,6 +39,12 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 export default function Cadastro() {
+  const [senhaVisivel, setSenhaVisivel] = useState<any>(false);
+
+  const verSenha = () => {
+    setSenhaVisivel(!senhaVisivel);
+  };
+
   const form: any = useRef(null);
 
   const {
@@ -52,18 +54,20 @@ export default function Cadastro() {
     formState: { errors },
   } = useForm<FormValues>({ resolver });
   const onSubmit = (e: any) => {
-    axios
-      .post("http://localhost:8080/posts", {
-        nome: e.nome,
-        tituloPost: e.tituloPost,
-        textoPost: e.textoPost,
-        email: e.email,
-        nomeUsuario: e.nomeUsuario,
-      })
-      .then((response) => {
-        console.log(response);
-        window.alert("O formulário foi enviado com sucesso");
-        reset();
+    Axios.post("http://localhost:8080/Cadastro", {
+      nome: e.nome,
+      email: e.email,
+      nomeUsuario: e.nomeUsuario,
+      senha: e.senha,
+    })
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          window.alert("Cadastro efetuado com sucesso");
+          reset();
+        } else if (res.data.Status === "Error") {
+          window.alert("Usuário já tem perfil existente");
+          reset();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -74,7 +78,7 @@ export default function Cadastro() {
     <form ref={form} onSubmit={handleSubmit(onSubmit)}>
       <NavBar />
       <div className="bg-gray-500 text-gray-900 p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Faça seu post</h2>
+        <h2 className="text-2xl font-bold mb-4">Cadastro</h2>
 
         <div className="mb-4">
           <label
@@ -132,45 +136,28 @@ export default function Cadastro() {
 
         <div className="mb-4">
           <label
-            htmlFor="título"
+            htmlFor="email"
             className="block text-sm font-medium text-black font-bold text-md md:text-xl"
           >
-            Título:
+            Senha:
           </label>
           <input
-            {...register("tituloPost")}
-            type="text"
+            {...register("senha")}
+            type="password"
             className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
-            placeholder="Título qualquer"
+            placeholder="Sua senha"
           />
+          <AiFillEye size={40} className="cursor-pointer right-10"/>
         </div>
-        {errors?.tituloPost && (
-          <p className="text-md text-white">{errors.tituloPost.message}</p>
-        )}
-
-        <div className="mb-4">
-          <label
-            htmlFor="conteúdo"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
-          >
-            Conteúdo:
-          </label>
-          <input
-            {...register("textoPost")}
-            type="text"
-            className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
-            placeholder="O que você está pensando?"
-          />
-        </div>
-        {errors?.textoPost && (
-          <p className="text-md text-white">{errors.textoPost.message}</p>
+        {errors?.senha && (
+          <p className="text-md text-white">{errors.senha.message}</p>
         )}
       </div>
       <button
         type="submit"
-        className="w-24 h-14 mt-10 flex justify-center items-center m-auto bg-gray-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-gray-500 duration-300"
+        className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-gray-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-gray-500 duration-300"
       >
-        <span>Enviar</span>
+        Cadastrar
       </button>
     </form>
   );

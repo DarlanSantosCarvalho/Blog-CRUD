@@ -16,7 +16,7 @@ export default function Home() {
             conhecimentos conosco.
           </p>
           <button className="text-xl mt-2 underline font-bold hover:text-2xl duration-300">
-            <Link href="/Cadastro">Faça seu primeiro post</Link>
+            <Link href="/Cadastro">Cadastre-se e compartilhe seus posts</Link>
           </button>
         </div>
       </div>
