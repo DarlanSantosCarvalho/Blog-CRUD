@@ -14,17 +14,9 @@ type FormValues = {
 
 const resolver: Resolver<FormValues> = async (values) => {
   return {
-    values: values.nome ? values : {},
+    values: values.nomeUsuario ? values : {},
     errors: !values.nome
       ? {
-          nome: {
-            type: "required",
-            message: "Preencha para enviar!",
-          },
-          email: {
-            type: "required",
-            message: "Preencha para enviar!",
-          },
           nomeUsuario: {
             type: "required",
             message: "Preencha para enviar!",
@@ -54,18 +46,16 @@ export default function Cadastro() {
     formState: { errors },
   } = useForm<FormValues>({ resolver });
   const onSubmit = (e: any) => {
-    Axios.post("http://localhost:8080/Cadastro", {
-      nome: e.nome,
-      email: e.email,
+    Axios.post("http://localhost:8080/Login", {
       nomeUsuario: e.nomeUsuario,
       senha: e.senha,
     })
       .then((res) => {
         if (res.data.Status === "Success") {
-          window.alert("Cadastro efetuado com sucesso");
+          window.alert("Login efetuado com sucesso");
           reset();
         } else if (res.data.Status === "Error") {
-          window.alert("Usuário já tem perfil existente");
+          window.alert("Senha errada");
           reset();
         }
       })
@@ -78,26 +68,7 @@ export default function Cadastro() {
     <form ref={form} onSubmit={handleSubmit(onSubmit)}>
       <NavBar />
       <div className="relative bg-gray-500 text-gray-900 p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Cadastro</h2>
-
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
-          >
-            Nome:
-          </label>
-          <input
-            {...register("nome")}
-            type="text"
-            className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
-            placeholder="Seu nome e sobrenome"
-          />
-        </div>
-        {errors?.nome && (
-          <p className="text-md text-white">{errors.nome.message}</p>
-        )}
-
+        <h2 className="text-2xl font-bold mb-4">Login</h2>
         <div className="mb-4">
           <label
             htmlFor="name"
@@ -114,25 +85,6 @@ export default function Cadastro() {
         </div>
         {errors?.nomeUsuario && (
           <p className="text-md text-white">{errors.nomeUsuario.message}</p>
-        )}
-
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
-          >
-            Email:
-          </label>
-          <input
-            {...register("email")}
-            type="text"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
-            placeholder="Exemplo@mail.com"
-          />
-        </div>
-        {errors?.email && (
-          <p className="text-md text-white">{errors.email.message}</p>
         )}
 
         <div className="mb-4">
@@ -167,7 +119,7 @@ export default function Cadastro() {
         type="submit"
         className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-gray-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-gray-500 duration-300"
       >
-        Cadastrar
+        Enviar
       </button>
     </form>
   );
