@@ -7,7 +7,7 @@ export default function Home() {
     <body>
       <NavBar />
       <div className="bg-gray-500 h-screen flex flex-col items-center justify-center">
-        <div className="text-center">
+        <div className="mb-60 text-center">
           <h1 className="text-4xl font-black text-black mb-4">
             Bem-vindo ao BlogX
           </h1>

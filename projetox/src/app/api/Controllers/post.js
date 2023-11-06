@@ -8,3 +8,17 @@ export const getPosts = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
+export const postPostagem = (req, res) => {
+
+  try {
+    database.query(
+      "INSERT INTO "
+    )
+  } catch (error) {
+    
+  }
+
+  if (err) return res.json(err);
+
+}

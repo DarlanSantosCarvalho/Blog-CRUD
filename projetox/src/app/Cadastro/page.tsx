@@ -165,7 +165,7 @@ export default function Cadastro() {
       </div>
       <button
         type="submit"
-        className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-gray-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-gray-500 duration-300"
+        className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-green-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-green-500 duration-300"
       >
         Cadastrar
       </button>
