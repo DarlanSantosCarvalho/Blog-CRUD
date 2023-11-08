@@ -16,19 +16,19 @@ Antes de começar, certifique-se de ter as seguintes ferramentas e dependências
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/blog-login-crud-app.git
+   [https://github.com/DarlanSantosCarvalho/Blog-CRUD.git](https://github.com/DarlanSantosCarvalho/Blog-CRUD.git)
    ```
 
 2. Navegue para o diretório do projeto:
 
    ```bash
-   cd blog-login-crud-app
+   cd src/app
    ```
 
 3. Instale as dependências para o servidor Node.js:
 
    ```bash
-   cd server
+   cd src/app/api
    npm install
    ```
 
@@ -41,30 +41,16 @@ Antes de começar, certifique-se de ter as seguintes ferramentas e dependências
    DB_DATABASE=nome-do-banco-de-dados
    ```
 
-5. Execute as migrações do banco de dados para criar as tabelas necessárias:
+5. Inicie o servidor Node.js:
 
    ```bash
-   npm run migrate
-   ```
-
-6. Instale as dependências para o cliente Next.js:
-
-   ```bash
-   cd ../client
-   npm install
-   ```
-
-7. Inicie o servidor Node.js:
-
-   ```bash
-   cd ../server
-   npm start
+   cd src/app/api
+   npm run start
    ```
 
 8. Inicie o cliente Next.js:
 
    ```bash
-   cd ../client
    npm run dev
    ```
 
