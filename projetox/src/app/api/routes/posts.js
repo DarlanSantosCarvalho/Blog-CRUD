@@ -1,8 +1,10 @@
-import express, { Router } from "express"
-import { getPosts } from "../Controllers/post.js";
+import express, { Router } from "express";
+import { getPosts, postPostagem } from "../Controllers/post.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/posts", getPosts)
+router.get("/posts", getPosts);
+
+router.post("/postagem", postPostagem);
 
 export default router;

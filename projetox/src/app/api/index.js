@@ -12,15 +12,24 @@ app.use(
   cors({
     origin: ["http://localhost:3000"],
     methods: ["POST", "GET"],
-    credentials: true
+    credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
 
 app.get("/users", usersRoutes);
+
 app.get("/posts", postsRoutes);
+
+app.post("/postagem", postsRoutes);
+
 app.post("/cadastro", cadastroRoutes);
+
 app.post("/login", loginRoutes);
+
+app.get("/", loginRoutes, (req, res) => {
+  return res.json({ Status: "Success", username: req.username });
+});
 
 app.listen(8080, console.log("Ouvindo na porta 8080"));

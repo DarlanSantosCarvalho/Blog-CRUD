@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 export const postLogin = (req, res) => {
   const nomeUsuario = req.body.nomeUsuario;
   const senha = req.body.senha;
-  const textoPost = req.body.textoPost
-  const tituloPost = req.body.tituloPost
 
   try {
     database.query(
@@ -19,12 +17,15 @@ export const postLogin = (req, res) => {
         if (results.length > 0) {
           const usuario = results[0];
           if (usuario.senha === senha) {
-            const name = results[0].name;
-            const token = jwt.sign({ name }, "jwt-secret-key", {
+            const username = results[0].nomeUsuario;
+            const token = jwt.sign({ username }, "jwt-secret-key", {
               expiresIn: "1d",
             });
             res.cookie("token", token);
-            return res.json({ Status: "Login efetuado" });
+            return res.json({
+              Status: "Login efetuado",
+              username: results[0].nomeUsuario,
+            });
           } else {
             return res.json({ Status: "Senha errada" });
           }
@@ -36,5 +37,21 @@ export const postLogin = (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ Error: "Internal Server Error" });
+  }
+};
+
+export const getLogin = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "Você não está autenticado" });
+  } else {
+    jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Algo errado no Token" });
+      } else {
+        req.username = decoded.username;
+        next();
+      }
+    });
   }
 };
