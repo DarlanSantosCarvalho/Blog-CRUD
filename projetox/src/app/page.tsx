@@ -51,11 +51,9 @@ export default function Home() {
       .post("http://localhost:8080/postagem", {
         tituloPost: e.tituloPost,
         textoPost: e.textoPost,
-        nomeUsuario: username,
       })
       .then(async (res) => {
         if (res.data.Status === "Success") {
-          console.log(res);
           await window.alert("Post enviado");
           reset();
         } else if (res.data.Status === "Error") {
@@ -105,26 +103,7 @@ export default function Home() {
         </main>
       ) : (
         <form ref={form} onSubmit={handleSubmit(onSubmit)}>
-          <nav className="flex justify-between p-12 text-xl text-black bg-gray-400">
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              {username}
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/Posts">Posts</Link>
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/Usuarios">Usuários</Link>
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link onClick={logOff} href="/Login">
-                Logoff
-              </Link>
-            </p>
-          </nav>
+          <NavBar />
           <div className="relative bg-gray-500 text-gray-900 p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
             <h2 className="text-2xl font-bold mb-4">Poste o seu conteúdo</h2>
 
@@ -136,13 +115,15 @@ export default function Home() {
                 Título Post:
               </label>
               <input
-                required={true}
                 {...register("tituloPost")}
                 type="text"
                 className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
                 placeholder="Seu nome e sobrenome"
               />
             </div>
+            {errors?.tituloPost && (
+              <p className="text-md text-white">{errors.tituloPost.message}</p>
+            )}
 
             <div className="mb-4">
               <label
@@ -152,13 +133,15 @@ export default function Home() {
                 Contéudo:
               </label>
               <input
-                required={true}
                 {...register("textoPost")}
                 type="text"
                 className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
                 placeholder="No que está pensando?"
               />
             </div>
+            {errors?.textoPost && (
+              <p className="text-md text-white">{errors.textoPost.message}</p>
+            )}
           </div>
           <button
             type="submit"
