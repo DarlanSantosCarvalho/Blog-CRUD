@@ -83,7 +83,7 @@ export default function Cadastro() {
         <div className="mb-4">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+            className="block text-sm text-black font-bold text-md md:text-xl"
           >
             Nome:
           </label>
@@ -101,7 +101,7 @@ export default function Cadastro() {
         <div className="mb-4">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+            className="block text-sm text-black font-bold text-md md:text-xl"
           >
             Nome de usuário:
           </label>
@@ -119,7 +119,7 @@ export default function Cadastro() {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+            className="block text-sm text-black font-bold text-md md:text-xl"
           >
             Email:
           </label>
@@ -138,7 +138,7 @@ export default function Cadastro() {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+            className="block text-sm text-black font-bold text-md md:text-xl"
           >
             Senha:
           </label>

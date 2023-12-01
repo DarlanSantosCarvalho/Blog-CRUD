@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useRef, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import NavBar from "../NavBar/page";
 import Link from "next/link";
 
 type FormValues = {
@@ -99,7 +100,7 @@ export default function Login() {
             <div className="mb-4">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+                className="block text-sm text-black font-bold text-md md:text-xl"
               >
                 Nome de usuário:
               </label>
@@ -117,7 +118,7 @@ export default function Login() {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+                className="block text-sm text-black font-bold text-md md:text-xl"
               >
                 Senha:
               </label>
@@ -151,8 +152,36 @@ export default function Login() {
         </form>
       ) : (
         <div>
-          <h2>Olá {username}</h2>
-          <p><Link href={"/"}>Clique aqui</Link></p>
+          <NavBar />
+          <div className="bg-gray-300 text-center p-8 rounded m-8">
+            <h1 className="text-4xl font-bold">
+              Bem-vindo ao RettiwT {username}!
+            </h1>
+            <p className="mt-4 text-lg">
+              Explore as últimas novidades, dicas e experiências fascinantes que
+              temos para oferecer. Estamos empolgados por tê-lo(a) conosco!
+            </p>
+            <p className="mt-2 text-xl underline hover:text-2xl hover:duration-500">
+              <Link href={"/"}>Fazer meu primeiro post</Link>
+            </p>
+          </div>
+
+          <div className="bg-gray-100 text-center p-6 m-8 rounded">
+            <h2 className="text-2xl font-bold">Participe da Comunidade</h2>
+            <p className="mt-2 text-lg">
+              Junte-se à nossa comunidade e compartilhe suas experiências.
+              Estamos ansiosos para ouvir suas histórias, opiniões e dicas e
+              questionamentos.
+            </p>
+          </div>
+
+          <div className="bg-gray-100 text-center p-6 m-8 rounded">
+            <h2 className="text-2xl font-bold">Interaja com seus amigos</h2>
+            <p className="mt-2 text-lg">
+              Curta, comente e debata em todos os posts que quiser, mantendo o
+              respeito sempre.
+            </p>
+          </div>
         </div>
       )}
     </div>
