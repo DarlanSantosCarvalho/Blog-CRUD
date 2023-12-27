@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../NavBar/page";
+import { RxAvatar } from "react-icons/rx";
 
 export default function PostsPage() {
   const [apiData, setApiData] = useState<any[]>([]);
@@ -9,6 +10,7 @@ export default function PostsPage() {
   useEffect(() => {
     axios.get("http://localhost:8080/posts").then((res) => {
       setApiData(res.data);
+      console.log(apiData)
     });
   }, []);
 
@@ -19,8 +21,11 @@ export default function PostsPage() {
         {apiData.map((itemsPost: any) => (
           <div
             key={itemsPost.idPost}
-            className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-500 text-black rounded-md md:h-72"
+            className="w-2/6 h-32 flex flex-col justify-around bg-red-700 text-white rounded-md md:h-72"
           >
+            <div>
+              <RxAvatar size={40} />
+            </div>
             <h2 className="font-bold text-md p-5 md:text-xl">
               {itemsPost.tituloPost}
             </h2>

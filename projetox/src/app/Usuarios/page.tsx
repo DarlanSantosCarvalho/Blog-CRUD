@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../NavBar/page";
+import { RxAvatar } from "react-icons/rx";
 
 export default function usersPage() {
   const [apiData, setApiData] = useState<any[]>([]);
@@ -19,8 +20,9 @@ export default function usersPage() {
         {apiData.map((users: any) => (
           <div
             key={users.idUsuario}
-            className="w-2/6 h-32 flex flex-col justify-evenly bg-gray-500 text-black md:h-72"
+            className="w-2/6 h-32 flex flex-col justify-evenly p-3 bg-red-700 text-white md:h-72"
           >
+            <RxAvatar size={40} /> 
             <h2 className="font-bold text-md p-5 md:text-xl">{users.nome}</h2>
             <p className="font-bold text-md p-5 md:text-xl">{users.email}</p>
             <p className="font-bold text-md p-5 md:text-xl">

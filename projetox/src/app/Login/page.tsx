@@ -77,37 +77,20 @@ export default function Login() {
     <div>
       {!auth ? (
         <form ref={form} onSubmit={handleSubmit(onSubmit)}>
-          <nav className="flex justify-between p-12 text-xl text-black bg-gray-400">
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/">Blog X</Link>
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/Posts">Posts</Link>
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/Usuarios">Usuários</Link>
-            </p>
-            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
-              {" "}
-              <Link href="/Login">Login</Link>
-            </p>
-          </nav>
-          <div className="relative bg-gray-500 text-gray-900 p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
+          <NavBar />
+          <div className="relative bg-red-700 text-white p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
             <h2 className="text-2xl font-bold mb-4">Login</h2>
             <div className="mb-4">
               <label
                 htmlFor="name"
-                className="block text-sm text-black font-bold text-md md:text-xl"
+                className="block text-sm text-white font-bold text-md md:text-xl"
               >
                 Nome de usuário:
               </label>
               <input
                 {...register("nomeUsuario")}
                 type="text"
-                className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
+                className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:black"
                 placeholder="Seu nome de usuário"
               />
             </div>
@@ -118,18 +101,18 @@ export default function Login() {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm text-black font-bold text-md md:text-xl"
+                className="block text-sm text-white font-bold text-md md:text-xl"
               >
                 Senha:
               </label>
               <input
                 {...register("senha")}
                 type={senhaVisivel ? "text" : "password"}
-                className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
+                className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
                 placeholder="Sua senha"
               />
               <div
-                className="absolute bottom-8 right-6 cursor-pointer"
+                className="text-black absolute bottom-8 right-6 cursor-pointer"
                 onClick={verSenha}
               >
                 {senhaVisivel ? (
@@ -149,11 +132,17 @@ export default function Login() {
           >
             Enviar
           </button>
+
+          <div>
+            <h2 className="text-center text-xl mt-5 font-bold">
+              <Link href="/Cadastro"> Cadastre-se </Link>
+            </h2>
+          </div>
         </form>
       ) : (
         <div>
           <NavBar />
-          <div className="bg-gray-300 text-center p-8 rounded m-8">
+          <div className="bg-red-700 text-white text-center p-8 rounded m-8">
             <h1 className="text-4xl font-bold">
               Bem-vindo ao RettiwT {username}!
             </h1>
@@ -166,7 +155,7 @@ export default function Login() {
             </p>
           </div>
 
-          <div className="bg-gray-100 text-center p-6 m-8 rounded">
+          <div className="text-white bg-red-700 text-center p-6 m-8 rounded">
             <h2 className="text-2xl font-bold">Participe da Comunidade</h2>
             <p className="mt-2 text-lg">
               Junte-se à nossa comunidade e compartilhe suas experiências.
@@ -175,7 +164,7 @@ export default function Login() {
             </p>
           </div>
 
-          <div className="bg-gray-100 text-center p-6 m-8 rounded">
+          <div className="text-white bg-red-700 text-center p-6 m-8 rounded">
             <h2 className="text-2xl font-bold">Interaja com seus amigos</h2>
             <p className="mt-2 text-lg">
               Curta, comente e debata em todos os posts que quiser, mantendo o

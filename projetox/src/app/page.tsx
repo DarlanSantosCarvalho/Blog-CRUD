@@ -84,16 +84,16 @@ export default function Home() {
       {!auth ? (
         <main>
           <NavBar />
-          <div className="bg-gray-500 h-screen flex flex-col items-center justify-center">
+          <div className="bg-red-700 h-screen flex flex-col items-center justify-center">
             <div className="mb-60 text-center">
-              <h1 className="text-4xl font-black text-black mb-4">
+              <h1 className="text-4xl font-black text-white mb-4">
                 Bem-vindo ao BlogX
               </h1>
-              <p className="text-2xl text-black">
+              <p className="text-2xl text-white">
                 Seja parte da nossa comunidade e compartilhe suas histórias e
                 conhecimentos conosco.
               </p>
-              <button className="text-xl mt-2 underline font-bold hover:text-2xl duration-300">
+              <button className="text-xl mt-2 underline text-white font-bold hover:text-2xl duration-300">
                 <Link href="/Cadastro">
                   Cadastre-se e compartilhe seus posts
                 </Link>
@@ -104,20 +104,20 @@ export default function Home() {
       ) : (
         <form ref={form} onSubmit={handleSubmit(onSubmit)}>
           <NavBar />
-          <div className="relative bg-gray-500 text-gray-900 p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
-            <h2 className="text-2xl font-bold mb-4">Poste o seu conteúdo</h2>
+          <div className="relative bg-red-700 text-white p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
+            <h2 className="text-2xl font-bold mb-4">No que está pensando?</h2>
 
             <div className="mb-4">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+                className="block text-sm text-white font-bold text-md md:text-xl"
               >
                 Título Post:
               </label>
               <input
                 {...register("tituloPost")}
                 type="text"
-                className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
+                className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
                 placeholder="Seu nome e sobrenome"
               />
             </div>
@@ -128,14 +128,14 @@ export default function Home() {
             <div className="mb-4">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-black font-bold text-md md:text-xl"
+                className="block text-sm text-white font-bold text-md md:text-xl"
               >
                 Contéudo:
               </label>
               <input
                 {...register("textoPost")}
                 type="text"
-                className="border rounded-md px-3 py-2 w-full focus:ring focus:ring-indigo-300"
+                className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
                 placeholder="No que está pensando?"
               />
             </div>

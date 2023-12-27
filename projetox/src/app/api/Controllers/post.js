@@ -1,4 +1,3 @@
-import { response } from "express";
 import { database } from "../db.js";
 import jwt from "jsonwebtoken";
 
@@ -60,7 +59,10 @@ export const getPosts = (req, res) => {
   const queryPosts = "SELECT * FROM posts";
 
   database.query(queryPosts, (err, data) => {
-    if (err) return res.json(err);
-    return res.status(200).json(data);
+    if (err) {
+      return res.json({ Status: "Error", err });
+    } else {
+      return res.json(data);
+    }
   });
 };

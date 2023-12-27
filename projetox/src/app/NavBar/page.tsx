@@ -29,7 +29,7 @@ export default function NavBar() {
     <header>
       <div>
         {!auth ? (
-          <nav className="flex flex-col lg:justify-between lg:flex-row p-12 text-xl text-black bg-gray-400">
+          <nav className="flex flex-col lg:justify-between lg:flex-row p-12 text-xl text-red-700 bg-white">
             <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
               {" "}
               <Link href="/">Blog X</Link>
@@ -48,10 +48,13 @@ export default function NavBar() {
             </p>
           </nav>
         ) : (
-          <nav className="flex flex-col text-center gap-5 lg:justify-between lg:flex-row p-12 text-xl text-black bg-gray-400">
+          <nav className="flex flex-col text-center gap-5 lg:justify-between lg:flex-row p-12 text-xl text-red-500 bg-white">
             <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
               {" "}
               {username}
+            </p>
+            <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
+              <Link href="/">Postar</Link>
             </p>
             <p className="font-bold text-md hover:text-2xl duration-300 md:text-xl">
               {" "}
