@@ -20,7 +20,7 @@ export default function usersPage() {
         {apiData.map((users: any) => (
           <div
             key={users.idUsuario}
-            className="w-2/6 h-32 flex flex-col justify-evenly p-3 bg-red-700 text-white md:h-72"
+            className="w-2/6 h-32 flex flex-col justify-evenly rounded-md p-3 bg-red-700 text-white md:h-72"
           >
             <RxAvatar size={40} /> 
             <h2 className="font-bold text-md p-5 md:text-xl">{users.nome}</h2>

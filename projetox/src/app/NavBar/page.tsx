@@ -7,11 +7,15 @@ export default function NavBar() {
   const [auth, setAuth] = useState<boolean>(false);
   const [username, setUsername] = useState<string | null>("");
 
+  function deleteCookie(name: any) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
   const logOff = () => {
+    deleteCookie('token');
     setAuth(false);
     window.alert("Você se desconectou");
   };
-
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios.get("http://localhost:8080").then((res) => {

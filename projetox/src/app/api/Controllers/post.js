@@ -39,9 +39,6 @@ export const postPostagem = (req, res) => {
                       Error: "Erro ao inserir a postagem no banco de dados",
                     });
                   }
-
-                  console.log("Postagem inserida com sucesso");
-                  // Resto do código, se necessário...
                   return res.json({ Status: "Success" });
                 }
               );
@@ -56,7 +53,8 @@ export const postPostagem = (req, res) => {
 };
 
 export const getPosts = (req, res) => {
-  const queryPosts = "SELECT * FROM posts";
+  const queryPosts =
+    "SELECT * FROM crud.usuarios INNER JOIN crud.posts ON usuarios.idUsuario = posts.idUsuario;";
 
   database.query(queryPosts, (err, data) => {
     if (err) {

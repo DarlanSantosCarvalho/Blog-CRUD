@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import NavBar from "../NavBar/page";
+import Link from "next/link";
 
 type FormValues = {
   nome: string;
@@ -164,10 +165,11 @@ export default function Cadastro() {
         )}
       </div>
       <button
+      onClick={onSubmit}
         type="submit"
         className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-green-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-green-500 duration-300"
       >
-        Cadastrar
+        <Link href="/Login"> Cadastrar</Link>
       </button>
     </form>
   );

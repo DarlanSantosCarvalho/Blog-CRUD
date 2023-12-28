@@ -133,8 +133,9 @@ export default function Login() {
             Enviar
           </button>
 
-          <div>
-            <h2 className="text-center text-xl mt-5 font-bold">
+          <div className="text-center mt-3">
+            <p>Não tem cadastro?</p>
+            <h2 className=" text-xl my-3 font-bold hover:text-2xl hover:duration-500">
               <Link href="/Cadastro"> Cadastre-se </Link>
             </h2>
           </div>

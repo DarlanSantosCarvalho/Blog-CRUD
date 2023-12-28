@@ -8,7 +8,7 @@ export const postCadastro = (req, res) => {
 
   try {
     database.query(
-      "SELECT nomeUsuario, email FROM usuarios WHERE nomeUsuario = ? AND email = ?",
+      "SELECT nomeUsuario, email FROM usuarios WHERE nomeUsuario = ? OR email = ?",
       [nomeUsuario, email],
       (error, results) => {
         if (results.length > 0) {
