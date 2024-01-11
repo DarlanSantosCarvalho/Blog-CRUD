@@ -5,6 +5,7 @@ import usersRoutes from "../api/routes/users.js";
 import postsRoutes from "../api/routes/posts.js";
 import cadastroRoutes from "../api/routes/cadastros.js";
 import loginRoutes from "../api/routes/login.js";
+import perfilRoutes from "../api/routes/perfil.js"
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.post("/postagem", postsRoutes);
 app.post("/cadastro", cadastroRoutes);
 
 app.post("/login", loginRoutes);
+
+app.get("/perfil/:nomeUsuario", perfilRoutes)
 
 app.get("/", loginRoutes, (req, res) => {
   return res.json({ Status: "Success", username: req.username });

@@ -1,5 +1,6 @@
 import { database } from "../db.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 export const postLogin = (req, res) => {
   const nomeUsuario = req.body.nomeUsuario;
@@ -16,19 +17,26 @@ export const postLogin = (req, res) => {
         }
         if (results.length > 0) {
           const usuario = results[0];
-          if (usuario.senha === senha) {
-            const username = results[0].nomeUsuario;
-            const token = jwt.sign({ username }, "jwt-secret-key", {
-              expiresIn: "1d",
-            });
-            res.cookie("token", token);
-            return res.json({
-              Status: "Login efetuado",
-              username: results[0].nomeUsuario,
-            });
-          } else {
-            return res.json({ Status: "Senha errada" });
-          }
+          // Utilize bcrypt.compare para verificar a senha
+          bcrypt.compare(senha, usuario.senha, (err, passwordMatch) => {
+            if (err) {
+              console.error(err);
+              return res.json({ Error: "Erro ao verificar a senha" });
+            }
+            if (passwordMatch) {
+              const username = results[0].nomeUsuario;
+              const token = jwt.sign({ username }, "jwt-secret-key", {
+                expiresIn: "1d",
+              });
+              res.cookie("token", token);
+              return res.json({
+                Status: "Login efetuado",
+                username: results[0].nomeUsuario,
+              });
+            } else {
+              return res.json({ Status: "Senha incorreta" });
+            }
+          });
         } else {
           return res.json({ Status: "Usuário não encontrado" });
         }

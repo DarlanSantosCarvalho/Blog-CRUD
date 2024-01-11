@@ -118,7 +118,7 @@ export default function Home() {
                 {...register("tituloPost")}
                 type="text"
                 className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
-                placeholder="Seu nome e sobrenome"
+                placeholder="Título do Post"
               />
             </div>
             {errors?.tituloPost && (

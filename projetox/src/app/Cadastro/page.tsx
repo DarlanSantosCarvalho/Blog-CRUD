@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import NavBar from "../NavBar/page";
-import Link from "next/link";
 
 type FormValues = {
   nome: string;
@@ -40,13 +39,14 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 export default function Cadastro() {
-  const [senhaVisivel, setSenhaVisivel] = useState<any>(false);
+
+  const [senhaVisivel, setSenhaVisivel] = useState<boolean>(false);
 
   const verSenha = () => {
     setSenhaVisivel(!senhaVisivel);
   };
 
-  const form: any = useRef(null);
+  const form = useRef(null);
 
   const {
     register,
@@ -62,6 +62,7 @@ export default function Cadastro() {
       senha: e.senha,
     })
       .then((res) => {
+        console.log(e.nome, e.email, e.senha, e.nomeUsuario);
         if (res.data.Status === "Success") {
           window.alert("Cadastro efetuado com sucesso");
           reset();
@@ -76,7 +77,11 @@ export default function Cadastro() {
   };
 
   return (
-    <form className="bg-red-700 pb-10" ref={form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="bg-red-700 pb-10"
+      ref={form}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <NavBar />
       <div className="relative bg-red-700 text-white p-4 shadow-md w-2/3 m-auto mt-10 rounded-md md:w-1/3">
         <h2 className="text-2xl font-bold mb-4">Cadastro</h2>
@@ -165,11 +170,10 @@ export default function Cadastro() {
         )}
       </div>
       <button
-      onClick={onSubmit}
         type="submit"
         className="w-28 h-14 mt-10 flex justify-center items-center m-auto bg-green-300 font-bold text-md rounded-md md:text-xl hover:w-28 hover:bg-green-500 duration-300"
       >
-        <Link href="/Login"> Cadastrar</Link>
+        Cadastrar
       </button>
     </form>
   );
