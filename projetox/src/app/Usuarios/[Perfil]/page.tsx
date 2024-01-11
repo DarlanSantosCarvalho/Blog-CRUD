@@ -1,25 +1,27 @@
 "use client";
 import axios from "axios";
-import NavBar from "../NavBar/page";
+import NavBar from "../../NavBar/page";
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function Perfil() {
-  const { nomeUsuario } = useParams();
+  const router = useRouter();
+  const { nomeUsuario } = router.query;
   const [dadoUsuario, setDadoUsuario] = useState<{}>();
 
   useEffect(() => {
     if (nomeUsuario) {
-      axios.get(`http://localhost:8080/users/${nomeUsuario}`).then((res) => {
+      axios.get(`http://localhost:8080/App/Usuarios/${nomeUsuario}`).then((res) => {
         setDadoUsuario(res.data);
       });
     }
-  }, [nomeUsuario]);
+  }, []);
 
   return (
     <div>
       <NavBar />
-      <h1>Olá {nomeUsuario}</h1>
+      <h1>Olá</h1>
+      <h2>{nomeUsuario}</h2>
     </div>
   );
 }

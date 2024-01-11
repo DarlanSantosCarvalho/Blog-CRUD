@@ -29,7 +29,7 @@ app.post("/cadastro", cadastroRoutes);
 
 app.post("/login", loginRoutes);
 
-app.get("/perfil/:nomeUsuario", perfilRoutes)
+app.get("/Perfil/:nomeUsuario", perfilRoutes)
 
 app.get("/", loginRoutes, (req, res) => {
   return res.json({ Status: "Success", username: req.username });

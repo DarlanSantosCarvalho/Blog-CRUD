@@ -23,7 +23,7 @@ export default function usersPage() {
             key={users.idUsuario}
             className="w-2/6 h-32 flex flex-col justify-evenly rounded-md p-3 bg-red-700 text-white md:h-72"
           >
-            <Link href={`/Perfil/${users.nomeUsuario}`}>
+            <Link href={`/usuarios/${users.nomeUsuario}`}>
               <RxAvatar size={40} />
             </Link>
             <h2 className="font-bold text-md p-5 md:text-xl">{users.nome}</h2>
