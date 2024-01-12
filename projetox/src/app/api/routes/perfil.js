@@ -3,6 +3,6 @@ import express, { Router } from "express";
 
 const router = express.Router()
 
-router.get("/Perfil/:nomeUsuario", getProfile);
+router.get("/Usuarios/:nomeUsuario", getProfile);
 
 export default router;
