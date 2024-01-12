@@ -4,12 +4,14 @@ const saltRounds = 10;
 
 export const postCadastro = (req, res) => {
   const nome = req.body.nome;
+  const sobrenome = req.body.sobrenome;
   const nomeUsuario = req.body.nomeUsuario;
   const email = req.body.email;
   const senha = req.body.senha;
-  const idade = 10;
-  const profissao = "Estudante";
-  const Biografia = "Sou estudante e tenho 10 anos";
+  const idade = req.body.idade;
+  const profissao = req.body.profissao;
+  const nacionalidade = req.body.nacionalidade
+  const Biografia = req.body.biografia;
 
   try {
     database.query(
@@ -30,6 +32,7 @@ export const postCadastro = (req, res) => {
                 "INSERT INTO usuarios (nome, email, nomeUsuario, senha, idade, profissao, biografia) VALUES (?,?,?,?,?,?,?)",
                 [
                   nome,
+                  sobrenome,
                   email,
                   nomeUsuario,
                   senhaCriptografada,

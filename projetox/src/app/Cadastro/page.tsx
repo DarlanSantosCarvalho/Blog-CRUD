@@ -1,12 +1,18 @@
 "use client";
 import Axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import NavBar from "../NavBar/page";
+import axios from "axios";
 
 type FormValues = {
   nome: string;
+  sobrenome: string;
+  idade: number;
+  profissao: string;
+  biografia: string;
+  nacionalidade: string;
   nomeUsuario: string;
   email: string;
   senha: string;
@@ -18,6 +24,26 @@ const resolver: Resolver<FormValues> = async (values) => {
     errors: !values.nome
       ? {
           nome: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          sobrenome: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          idade: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          biografia: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          profissao: {
+            type: "required",
+            message: "Preencha para enviar!",
+          },
+          nacionalidade: {
             type: "required",
             message: "Preencha para enviar!",
           },
@@ -39,8 +65,15 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 export default function Cadastro() {
-
   const [senhaVisivel, setSenhaVisivel] = useState<boolean>(false);
+  // const [listaPaises, setListaPaises] = useState<Array<String>>([]);
+
+  // useEffect(() => {
+  //   axios.get("https://servicodados.ibge.gov.br/api/v1/paises").then((res) => {
+  //     setListaPaises(res.data);
+  //     console.log(res.data)
+  //   });
+  // });
 
   const verSenha = () => {
     setSenhaVisivel(!senhaVisivel);
@@ -57,12 +90,16 @@ export default function Cadastro() {
   const onSubmit = (e: any) => {
     Axios.post("http://localhost:8080/Cadastro", {
       nome: e.nome,
+      sobrenome: e.sobrenome,
+      idade: e.idade,
+      profissao: e.profissao,
+      biografia: e.biografia,
       email: e.email,
       nomeUsuario: e.nomeUsuario,
       senha: e.senha,
     })
       .then((res) => {
-        console.log(e.nome, e.email, e.senha, e.nomeUsuario);
+        console.log(e.nome, e.sobrenome, e.email, e.senha, e.nomeUsuario);
         if (res.data.Status === "Success") {
           window.alert("Cadastro efetuado com sucesso");
           reset();
@@ -97,11 +134,29 @@ export default function Cadastro() {
             {...register("nome")}
             type="text"
             className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
-            placeholder="Seu nome e sobrenome"
+            placeholder="Seu nome"
           />
         </div>
         {errors?.nome && (
           <p className="text-md text-white">{errors.nome.message}</p>
+        )}
+
+        <div className="mb-4">
+          <label
+            htmlFor="Sobrenome"
+            className="block text-sm text-white font-bold text-md md:text-xl"
+          >
+            Sobrenome:
+          </label>
+          <input
+            {...register("sobrenome")}
+            type="text"
+            className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
+            placeholder="Seu sobrenome"
+          />
+        </div>
+        {errors?.sobrenome && (
+          <p className="text-md text-white">{errors.sobrenome.message}</p>
         )}
 
         <div className="mb-4">
@@ -120,6 +175,78 @@ export default function Cadastro() {
         </div>
         {errors?.nomeUsuario && (
           <p className="text-md text-white">{errors.nomeUsuario.message}</p>
+        )}
+
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm text-white font-bold text-md md:text-xl"
+          >
+            Idade
+          </label>
+          <input
+            {...register("idade")}
+            type="number"
+            className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
+            placeholder="Seu nome de usuário"
+          />
+        </div>
+        {errors?.idade && (
+          <p className="text-md text-white">{errors.idade.message}</p>
+        )}
+
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm text-white font-bold text-md md:text-xl"
+          >
+            Profissão
+          </label>
+          <input
+            {...register("profissao")}
+            type="text"
+            className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
+            placeholder="Sua profissão ou ocupação"
+          />
+        </div>
+        {errors?.profissao && (
+          <p className="text-md text-white">{errors.profissao.message}</p>
+        )}
+
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm text-white font-bold text-md md:text-xl"
+          >
+            Nacionalidade
+          </label>
+          <input
+            {...register("nacionalidade")}
+            type="text"
+            className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
+            placeholder="Seu país de nascimento"
+          />
+        </div>
+        {errors?.nacionalidade && (
+          <p className="text-md text-white">{errors.nacionalidade.message}</p>
+        )}
+
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm text-white font-bold text-md md:text-xl"
+          >
+            Descrição
+          </label>
+          <input
+            {...register("biografia")}
+            type="text"
+            className="text-black border rounded-md px-3 py-2 w-full focus:ring focus:ring-black"
+            placeholder="Fale sobre você"
+          />
+        </div>
+        {errors?.biografia && (
+          <p className="text-md text-white">{errors.biografia.message}</p>
         )}
 
         <div className="mb-4">
