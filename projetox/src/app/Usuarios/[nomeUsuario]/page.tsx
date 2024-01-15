@@ -12,6 +12,7 @@ const Perfil = () => {
   useEffect(() => {
     axios.get(`http://localhost:8080/Usuarios/${nomeUsuario}`).then((res) => {
       setDadoUsuario(res.data.Message[0]);
+      console.log(res.data.Message[0]);
     });
   }, [nomeUsuario]);
 
@@ -22,9 +23,10 @@ const Perfil = () => {
       <div className="max-w-md m-auto bg-red-600 rounded p-4 shadow-md text-white">
         <div className="mt-4 text-center flex flex-col gap-3">
           <RxAvatar size={40} />
-          <h2 className="text-md font-bold lg:text-xl">
+          <h1 className="text-md font-bold lg:text-xl">
             {dadoUsuario.nomeUsuario}
-          </h2>
+          </h1>
+          <p className="text-md lg:text-l">Bio: {dadoUsuario.Biografia}</p>
           <p className="text-md lg:text-l">
             Nome: {dadoUsuario.nome} {dadoUsuario.sobrenome}
           </p>

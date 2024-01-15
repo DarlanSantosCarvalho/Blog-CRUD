@@ -3,7 +3,7 @@ import { database } from "../db.js";
 export const getProfile = (req, res) => {
     const nomeUsuario = req.params.nomeUsuario;
     database.query(
-      "SELECT * FROM usuarios WHERE nomeUsuario = ?",
+      "SELECT nomeUsuario, email, nome, sobrenome, idade, profissao, Biografia, nacionalidade FROM usuarios WHERE nomeUsuario = ?",
       [nomeUsuario], 
       (err, result) => {
         if (err) {

@@ -10,7 +10,7 @@ export const postCadastro = (req, res) => {
   const senha = req.body.senha;
   const idade = req.body.idade;
   const profissao = req.body.profissao;
-  const nacionalidade = req.body.nacionalidade
+  const nacionalidade = req.body.nacionalidade;
   const Biografia = req.body.biografia;
 
   try {
@@ -29,16 +29,17 @@ export const postCadastro = (req, res) => {
               console.log(err);
             } else {
               database.query(
-                "INSERT INTO usuarios (nome, email, nomeUsuario, senha, idade, profissao, biografia) VALUES (?,?,?,?,?,?,?)",
+                "INSERT INTO usuarios (nomeUsuario, email, nome, sobrenome, idade, profissao, biografia, nacionalidade, senha) VALUES (?,?,?,?,?,?,?,?,?)",
                 [
+                  nomeUsuario,
+                  email,
                   nome,
                   sobrenome,
-                  email,
-                  nomeUsuario,
-                  senhaCriptografada,
                   idade,
                   profissao,
                   Biografia,
+                  nacionalidade,
+                  senhaCriptografada,
                 ]
               );
               console.log("O cadastro foi efetuado com sucesso");

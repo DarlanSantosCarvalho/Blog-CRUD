@@ -17,7 +17,6 @@ export const postLogin = (req, res) => {
         }
         if (results.length > 0) {
           const usuario = results[0];
-          // Utilize bcrypt.compare para verificar a senha
           bcrypt.compare(senha, usuario.senha, (err, passwordMatch) => {
             if (err) {
               console.error(err);

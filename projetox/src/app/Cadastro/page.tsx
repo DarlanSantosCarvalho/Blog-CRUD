@@ -66,14 +66,6 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function Cadastro() {
   const [senhaVisivel, setSenhaVisivel] = useState<boolean>(false);
-  // const [listaPaises, setListaPaises] = useState<Array<String>>([]);
-
-  // useEffect(() => {
-  //   axios.get("https://servicodados.ibge.gov.br/api/v1/paises").then((res) => {
-  //     setListaPaises(res.data);
-  //     console.log(res.data)
-  //   });
-  // });
 
   const verSenha = () => {
     setSenhaVisivel(!senhaVisivel);
@@ -91,6 +83,7 @@ export default function Cadastro() {
     Axios.post("http://localhost:8080/Cadastro", {
       nome: e.nome,
       sobrenome: e.sobrenome,
+      nacionalidade: e.nacionalidade,
       idade: e.idade,
       profissao: e.profissao,
       biografia: e.biografia,
@@ -99,7 +92,7 @@ export default function Cadastro() {
       senha: e.senha,
     })
       .then((res) => {
-        console.log(e.nome, e.sobrenome, e.email, e.senha, e.nomeUsuario);
+        console.log(e.nome, e.sobrenome, e.email, e.senha, e.nomeUsuario, e.biografia, e.profissao, e.idade, e.nacionalidade);
         if (res.data.Status === "Success") {
           window.alert("Cadastro efetuado com sucesso");
           reset();

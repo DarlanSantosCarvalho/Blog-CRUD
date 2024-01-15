@@ -10,7 +10,8 @@ export default function usersPage() {
 
   useEffect(() => {
     axios.get("http://localhost:8080/users").then((res) => {
-      setApiData(res.data);
+      setApiData(res.data.data);
+      console.log(res.data.data)
     });
   }, []);
 
